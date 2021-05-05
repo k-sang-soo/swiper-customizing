@@ -1,5 +1,7 @@
-var progressBar = document.querySelector('.swiper-progress-bar');
+var progressBar = document.querySelector('.slide_progress-bar');
 var playButton = document.querySelector('.swiper-play');
+var pauseButton = document.querySelector('.swiper-pause');
+
 var swiper = new Swiper('.swiper-container', {
     pagination: {
         el: '.swiper-pagination',
@@ -12,20 +14,22 @@ var swiper = new Swiper('.swiper-container', {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
+    loop: true,
     autoplay: {
         delay: 5000,
+        disableOnInteraction: false,
     },
     on: {
         init: function () {
             progressBar.classList.remove('animate');
-            progressBar.classList.remove('active');
+            //progressBar.classList.remove('active');
             progressBar.classList.add('animate');
-            progressBar.classList.add('active');
+            //progressBar.classList.add('active');
         },
         slideChangeTransitionStart: function () {
             progressBar.classList.remove('animate');
-            progressBar.classList.remove('active');
-            progressBar.classList.add('active');
+            //progressBar.classList.remove('active');
+            //progressBar.classList.add('active');
         },
         slideChangeTransitionEnd: function () {
             progressBar.classList.add('animate');
@@ -33,12 +37,12 @@ var swiper = new Swiper('.swiper-container', {
     },
 });
 playButton.addEventListener('click', function () {
-    this.classList.toggle('pause');
-    if (!this.classList.contains('pause')) {
-        console.log('play');
-        swiper.autoplay.start();
-    } else {
-        console.log('pause');
-        swiper.autoplay.stop();
-    }
+    // this.classList.toggle('pause');
+    console.log('play');
+    swiper.autoplay.start();
+});
+
+pauseButton.addEventListener('click', function () {
+    console.log('pause');
+    swiper.autoplay.stop();
 });
